@@ -8,7 +8,7 @@ horoscopo_pdep(P, funcional) :-
     nacio(P, _, Dia, Mes, _),
     (
         (Mes = 3, Dia >= 23); 
-        (Mes > 3, Mes < 5);
+        (Mes = 4);
         (Mes = 5, Dia =< 29)
     ).
 
