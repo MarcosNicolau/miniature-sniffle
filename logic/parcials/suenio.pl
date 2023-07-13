@@ -83,9 +83,12 @@ puedeAlegrarAUnaPersona(Personaje, Persona) :-
 
 
 
-% :- begin_tests(general).
+:- begin_tests(general).
 
-% test(tienen_quimica, set(Persona == [gabriel, juan, macarena], )) :-
-%     tienenQuimica(Persona, Personaje).
+test(tienen_quimica, set(Persona == [gabriel, macarena])) :-
+    tienenQuimica(Persona, campanita).
 
-% :- end_tests(general).
+test(juan_no_tiene_quimica_con_campanita, fail) :-
+    tienenQuimica(juan, campanita).
+
+:- end_tests(general).
