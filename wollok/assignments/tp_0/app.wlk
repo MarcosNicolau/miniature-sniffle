@@ -1,6 +1,5 @@
 // ================ Donpepe ================
-object campoDonPepe {
-    const tamano_hectareas = 15
+object campoDonPepe {const tamano_hectareas = 15
     var cultivo_sembrado = trigo
     var hectareas_sembradas = 10
     var saldo_cuenta_corriente = 5000
@@ -22,6 +21,7 @@ object campoDonPepe {
 
     method resembrar(nuevo_cultivo) {
         self.actualizarSaldo(-(nuevo_cultivo.costo(hectareas_sembradas)))
+        cultivo_sembrado.restablecer()
         cultivo_sembrado = nuevo_cultivo
     }
 
@@ -32,7 +32,7 @@ object campoDonPepe {
     }
 
     method sembrar(nuevo_cultivo, hectareas_a_sembrar) {
-        if(hectareas_a_sembrar < tamano_hectareas) {
+        if(hectareas_a_sembrar <= tamano_hectareas) {
             self.actualizarSaldo(-(nuevo_cultivo.costo(hectareas_a_sembrar)))
             cultivo_sembrado = nuevo_cultivo
             hectareas_sembradas = hectareas_a_sembrar
@@ -54,11 +54,11 @@ object campoDonPepe {
 
 // ================ Other subjects ================
 object mercadoChicago {
-    method precio_soja() = 21
+    method precio_soja() = 1368
 }
 
 object bcra {
-    method dolar_soja() = 321321
+    method dolar_soja() = 350
 }
 
 
@@ -127,7 +127,7 @@ object maiz {
     const precio_por_hectarea = 500
     const rendimiento_por_hectarea = 15
 
-    method costo(hectareas) = {
+    method costo(hectareas) {
         const costo = hectareas * precio_por_hectarea
         if(costo > 5000) return 5000 
         return costo

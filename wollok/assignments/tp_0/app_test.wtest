@@ -1,5 +1,4 @@
 import app.*
-
 describe "Testeo de los eventos de don pepe" {
 
     test "combatirPlaga" {
@@ -21,7 +20,7 @@ describe "Testeo de los eventos de don pepe" {
     test "nueva temporada" {
         campoDonPepe.cosechar()
         campoDonPepe.sembrar(soja, 15)
-        assert.equals(105000, campoDonPepe.getSaldo())
+        assert.equals(94740, campoDonPepe.getSaldo())
     }
 }
 
