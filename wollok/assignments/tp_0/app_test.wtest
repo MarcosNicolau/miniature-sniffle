@@ -1,0 +1,27 @@
+import app.*
+
+describe "Testeo de los eventos de don pepe" {
+
+    test "combatirPlaga" {
+        campoDonPepe.fumigar()
+        campoDonPepe.fertilizar(10)
+        assert.equals(4750, campoDonPepe.getSaldo())
+    }
+
+    test "sequia" {
+        campoDonPepe.resembrar(batata)
+        assert.equals(4800, campoDonPepe.getSaldo())
+    }
+
+    test "epocas beneficiosas" {
+        campoDonPepe.ampliarSuperficie()
+        assert.equals(2500, campoDonPepe.getSaldo())
+    }
+
+    test "nueva temporada" {
+        campoDonPepe.cosechar()
+        campoDonPepe.sembrar(soja, 15)
+        assert.equals(105000, campoDonPepe.getSaldo())
+    }
+}
+
