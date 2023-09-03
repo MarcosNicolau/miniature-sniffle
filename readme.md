@@ -6,4 +6,4 @@ During the year we see the following paradigms
 
 -   Functional: haskell
 -   Logic: prolog
--   OOP(Object Oriented Programming): wollok
+-   OOP(Object Oriented Programming): [wollok](https://github.com/uqbar-project)
