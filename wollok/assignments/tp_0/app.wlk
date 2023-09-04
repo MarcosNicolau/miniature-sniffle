@@ -1,39 +1,47 @@
 // ================ Donpepe ================
-object campoDonPepe {const tamano_hectareas = 15
+object cuentaCorrienteDonPepe {
+    var saldo = 5000
+
+    method getSaldo() = saldo
+
+    method depositar(monto) {
+        saldo = saldo + monto
+    }
+
+    method retirar(monto) {
+        saldo = saldo - monto
+    }
+}
+object campoDonPepe {
+    const tamano_hectareas = 15
     var cultivo_sembrado = trigo
     var hectareas_sembradas = 10
-    var saldo_cuenta_corriente = 5000
 
-    method getSaldo() = saldo_cuenta_corriente
-
-    method actualizarSaldo(actualizacion) {
-        saldo_cuenta_corriente = saldo_cuenta_corriente + actualizacion
-    }
     
     method fumigar() {
-        self.actualizarSaldo(-(10 * tamano_hectareas))
+        cuentaCorrienteDonPepe.retirar(10 * tamano_hectareas)
     }
 
     method fertilizar(precio_fertilizante_por_hectarea) {
-        self.actualizarSaldo(-(precio_fertilizante_por_hectarea * hectareas_sembradas))
+        cuentaCorrienteDonPepe.retirar(precio_fertilizante_por_hectarea * hectareas_sembradas)
         cultivo_sembrado.fertilizar()
     }
 
     method resembrar(nuevo_cultivo) {
-        self.actualizarSaldo(-(nuevo_cultivo.costo(hectareas_sembradas)))
+        cuentaCorrienteDonPepe.retirar(nuevo_cultivo.costo(hectareas_sembradas))
         cultivo_sembrado.restablecer()
         cultivo_sembrado = nuevo_cultivo
     }
 
     method ampliarSuperficie() {
         const nuevas_hectareas = tamano_hectareas - hectareas_sembradas
-        self.actualizarSaldo(-(cultivo_sembrado.costo(nuevas_hectareas)))
+        cuentaCorrienteDonPepe.retirar(cultivo_sembrado.costo(nuevas_hectareas))
         hectareas_sembradas = hectareas_sembradas + nuevas_hectareas
     }
 
     method sembrar(nuevo_cultivo, hectareas_a_sembrar) {
         if(hectareas_a_sembrar <= tamano_hectareas) {
-            self.actualizarSaldo(-(nuevo_cultivo.costo(hectareas_a_sembrar)))
+            cuentaCorrienteDonPepe.retirar(nuevo_cultivo.costo(hectareas_a_sembrar))
             cultivo_sembrado = nuevo_cultivo
             hectareas_sembradas = hectareas_a_sembrar
         }
@@ -44,9 +52,9 @@ object campoDonPepe {const tamano_hectareas = 15
 
     method cosechar() {
         const ganancia = cultivo_sembrado.precioDeVenta(cultivo_sembrado.rendimiento(hectareas_sembradas))
+        cuentaCorrienteDonPepe.depositar(ganancia)  
         //Se restablece el estado del cultivo
         cultivo_sembrado.restablecer()
-        self.actualizarSaldo(ganancia)  
         cultivo_sembrado = cultivoVacio
     }
 
@@ -97,6 +105,7 @@ object trigo {
 
 object soja {
     const rendimiento_por_hectarea_base = 20
+    const rendimiento_por_hectarea_fertilizado = 40
     var rendimiento_por_hectarea = rendimiento_por_hectarea_base
     var esta_fertilizado = false
 
@@ -113,7 +122,7 @@ object soja {
         }
         else {
             esta_fertilizado = true
-            rendimiento_por_hectarea = 40
+            rendimiento_por_hectarea = rendimiento_por_hectarea_fertilizado
         }
     }
 
