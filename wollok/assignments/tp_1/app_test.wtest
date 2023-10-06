@@ -1,0 +1,25 @@
+import app.*
+
+//TODO TERMINAR TESTS
+describe "Parte A:" {  
+const loboHuargo = new Acompanante(animal = "loboHuargo", peligroso = true)
+const lobo = new Acompanante(animal = "lobo", peligroso = false)
+const dragon = new Acompanante(animal = "dragon", peligroso = true)
+
+const sansa = new Personaje(dinero = 2000, ciudad = "Winterfell", personalidad = confundido, cantidadCasamientos = 2, acompanantes = [lobo, dragon], casa = casaStark)
+const jamie = new Personaje(dinero = 5000, ciudad = "Kings landing", personalidad = miedoso, cantidadCasamientos = 0, casa = casaLannister)
+const tyrion = new Personaje(dinero = 5000, ciudad = "Kings landing", personalidad = miedoso, cantidadCasamientos = 1, casa = casaLannister)
+const jonSnow = new Personaje(dinero = 5000, ciudad = "Winterfell", personalidad = asesino, cantidadCasamientos = 0, acompanantes = [loboHuargo], casa = guardiaDeLaNoche)
+
+    test "Sansa deberia poder casarse por no ser un miembro de la casa" {
+        sansa.casarse(jamie)
+        assert.equals(3, sansa.cantidadCasamientos())
+    }
+
+    test "Tyrion no deberia poder casarse por tener mas de un casamiento" {
+        tyrion.casarse(sansa)
+        assert.equals(1, tyrion.cantidadCasamientos())
+    }
+
+
+}
