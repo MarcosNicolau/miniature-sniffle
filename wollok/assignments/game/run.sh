@@ -1,0 +1,1 @@
+wollok run -a ../assets -p ./src/ app.application    
