@@ -6,14 +6,16 @@ This is just a simple game
 
 [x] Player movement
 [x] Player shooting
-[ ] Generation of enemies
+[x] Generation of enemies
+[ ] Player lives
 [ ] Enemy movement
 [ ] Enemy shooting
 [ ] Enemy collision
-[ ] Player collision
-[ ] Player death
 [ ] Enemy death
+[ ] Player collision
+[ ] Different types of waves
 [ ] Score
+[ ] Player death
 [ ] Game over
 [ ] Game over screen
 [ ] Game over screen animation
