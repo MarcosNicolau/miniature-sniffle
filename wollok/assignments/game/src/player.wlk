@@ -31,6 +31,8 @@ object player {
 
     
     method init() {
+        game.addVisual(self)
+        game.addVisual(playerBulletsUI)
         self.setupControls()
         gameManager.addRunFn({self.move()})
     } 
@@ -49,6 +51,11 @@ object player {
         
     }
 
+    method getDamaged(damage) {
+        health -= damage
+        if(health <= 0) self.die()
+    }
+
     method setupControls() {
         keyboard.w().onPressDo({isMovingUp = true})
         keyboard.s().onPressDo({isMovingUp = false})
@@ -65,10 +72,8 @@ object player {
     }
 
     method die() {
-        if (health <= 0){
-            game.stop()
-            game.addVisual(gameOver) //TODO make gameOver in main
-        }
+        game.stop()
+        // game.addVisual(gameOver) //TODO make gameOver in main
     }
 }
 
@@ -77,7 +82,7 @@ object player {
 object playerBulletsUI {
     var property bullets = player.bulletsLeft()
     method position() = game.at(game.width() - 100, 20)
-    method message() = "Balas: " + player.bulletsLeft()
-    method text() = "Balas: " + player.bulletsLeft()
+    method message() = "Bullets: " + player.bulletsLeft()
+    method text() = "Bullets: " + player.bulletsLeft()
 }
 
