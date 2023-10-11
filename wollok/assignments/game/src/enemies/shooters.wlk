@@ -20,7 +20,7 @@ class Bullet {
     }
 
     method collision() {
-        game.onCollideDo(self, {visual => {
+        game.whenCollideDo(self, {visual => {
             visual.getDamaged(damage)
         }})
     }
