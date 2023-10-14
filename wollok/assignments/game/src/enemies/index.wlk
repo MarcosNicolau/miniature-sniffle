@@ -1,6 +1,7 @@
 import enemies.shooters.*
 import enemies.melee.*
 import player.*
+import _scheduler.*
 
 // Wave functionality
 // The wave system will be fairly simple, basically we are gonna create 3 different types of waves, each one with its own items and stuff
@@ -27,22 +28,23 @@ class Wave {
 
 class NormalWave inherits Wave {
     var totalEnemiesLeftToSpawn = 0
+    var enemyNumber = 0
     
     override method spawnEnemies() {
-        totalEnemiesLeftToSpawn = currentWave * 5
+        totalEnemiesLeftToSpawn = currentWave
         self.spawnEnemy()
     }
 
     method spawnEnemy() {
         const rndNum = 0.randomUpTo(2).round()
-        if(rndNum == 0) new Sniper(damage = currentWave * 10).init()
-        else if(rndNum == 1) new Turret(damage = currentWave * 5).init()
-        else if(rndNum == 2) new Melee(damage = currentWave * 2).init()
-        else null
-
+        if(rndNum == 0) new Sniper(damage = currentWave * 10, id = enemyNumber).init()
+        else if(rndNum == 1) new Sniper(damage = currentWave * 5, id = enemyNumber).init()
+        else if(rndNum == 2) new Sniper(damage = currentWave * 2, id = enemyNumber).init()
+        enemyNumber += 1
         totalEnemiesLeftToSpawn -= 1
+
         if(totalEnemiesLeftToSpawn != 0) {
-            game.schedule(1000, {self.spawnEnemy()})
+            scheduler.schedule(1000, {self.spawnEnemy()})
         }
     }
 }
@@ -57,9 +59,9 @@ object waveManager {
     }
 
     method startWave() {
-    //    //TODO a counter before starting the wave and the wave number should be displayed
-    //    const rndNumber = 0.randomUpTo(0) 
-    //    if(rndNumber == 0) 
+    //TODO a counter before starting the wave and the wave number should be displayed
+       const rndNumber = 0.randomUpTo(0).round()
+       if(rndNumber == 0) 
         wave = new NormalWave(currentWave = currentWave)
        wave.start()
     }
@@ -67,7 +69,7 @@ object waveManager {
     method nextWave() {
         wave.onWaveFinish()
         currentWave += 1
-        self.startWave()
+        scheduler.schedule(3000, {self.startWave()})
     }
 
     method destroyEnemy(enemy) {
@@ -82,5 +84,5 @@ object waveManager {
 object currentWaveUI {
     method text() = "Wave: " + waveManager.currentWave()
     method message() = "Wave: " + waveManager.currentWave()
-    method position() = game.at(game.width() - 50, game.height() - 20) 
+    method position() = game.at(game.width() - 100, game.height() - 100) 
 }

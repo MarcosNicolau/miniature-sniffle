@@ -21,8 +21,9 @@ This is just a simple game
 -   [x] Enemy movement
 -   [x] Enemy attack
 -   [x] Enemy death
--   [x] UI: health(change color based on value), enemies left for finishing the wave
+-   [x] UI: health(change color based on value)
 -   [x] Wave system
+-   [ ] Enemies collisions
 -   [ ] Add more variety of waves
 
 ### UI
@@ -30,6 +31,7 @@ This is just a simple game
 -   [ ] Menu
 -   [ ] How to play
 -   [ ] Pause
+-   [ ] Enemies left for finishing the wave
 -   [ ] Score(composed of waves and number of kills)
 -   [ ] Score
 -   [ ] Game over

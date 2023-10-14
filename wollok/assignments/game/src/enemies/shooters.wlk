@@ -1,52 +1,62 @@
 import enemies.enemy.*
-import main.gameManager
+import _utils.*
+import enemies.index.*
+import gameLoop.*
+import _scheduler.*
+import player.*
 
-class Bullet {
-    var property position
-    const speed
-    const damage
-    const property image
+class SniperBullet inherits EnemyBullet {
+    var ySpeed = 5
 
-    method init() {
-        game.addVisual(self)
-        gameManager.addRunFn({self.move()})
-    }   
-    
-    method move() {
-        if(position.y() <= game.width() + 50) {
-            game.removeVisual(self)
-        }
-        position = position.left(speed)
+    override method init() {
+        super()
+        const yDir  = player.position().y()
+        const yDisFromPlayer = player.position().y() - position.y()
+        // From the cinematic equations of the player and bullet we can solve the y velocity in order to hit the player
+        // I guess cinematcis were important after all...
+        ySpeed =  -(player.position().y() - position.y()) / ((player.position().x() - position.x()) / speed)
     }
 
-    method collision() {
-        game.whenCollideDo(self, {visual => {
-            visual.getDamaged(damage)
-        }})
+    override method move() {
+        position = position.left(speed).up(ySpeed)        
+    }   
+}
+
+class TurretBullet inherits EnemyBullet {
+    override method move() {
+        if(position.x() <= -20) {
+            game.removeVisual(self)
+            gameLoop.remove("enemy_bullet" + id)
+        }
+        position = position.left(speed)
     }
 }
 
 class Shooter inherits Enemy {
     const speed
-    const bulletSpeed
-    const bulletImage
     const moveUntil
-    const bulletStartingYPos = position.y(player.y()) 
-
-    override method attack() {
-        new Bullet(position = bulletStartingYPos, damage = damage, speed = bulletSpeed, image = bulletImage).init()
-        game.schedule(6000, {self.attack()})
-    }
     
     override method move() {
         position = position.left(speed)
-        if(position.y() <= game.width() - moveUntil) {
-            gameManager.removeRunFn({self.move()})
+        if(position.x() <= game.width() - moveUntil) {
+            self.stopMoving()
+            self.attack()
         }
     }
 }
 
-class Sniper inherits Shooter(image = "sniper.png", speed = 4, bulletSpeed = 5, bulletImage = "sniper_bullet.png", moveUntil = 40) {}
+class Sniper inherits Shooter(image = "sniper.png", speed = 4,  moveUntil = 150) {
+    override method attack() {
+        new SniperBullet(position = position, damage = damage, speed = 3, image = "sniper_bullet.png", id = utils.generateRandomId()).init()
+        scheduler.schedule(3000, {self.attack()})
+    }
+}
+
 // They only shoot ahead, witouth pointing to the player
-class Turret inherits Shooter(image = "turret.png", speed = 4, bulletSpeed = 5, bulletImage = "turrent_bullet.png", moveUntil = 80, bulletStartingYPos = position.y()) {}
+class Turret inherits Shooter(image = "turret.png", speed = 4, moveUntil = 200) {
+    override method attack() {
+        new TurretBullet(position = position, damage = damage, speed = 2, image = "turret_bullet.png", id = utils.generateRandomId()).init()
+        scheduler.schedule(2000, {self.attack()})
+    }
+}
 

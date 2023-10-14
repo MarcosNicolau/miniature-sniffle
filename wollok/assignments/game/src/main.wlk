@@ -1,8 +1,9 @@
 import player.*
+import gameLoop.*
 import enemies.index.waveManager
 
 object gameManager {
-    const runner = []
+  
 
     method start() {
         game.width(600)
@@ -11,16 +12,7 @@ object gameManager {
         game.boardGround("background.png")
         game.start()
         player.init()
+        gameLoop.start()
         waveManager.init()
-        game.onTick(60, "runner", {runner.forEach({fn => fn.apply()})})
-    }
-
-
-    method addRunFn(fn) {
-        runner.add(fn)
-    }
-
-    method removeRunFn(fn) {
-        runner.remove(fn)
     }
 }
