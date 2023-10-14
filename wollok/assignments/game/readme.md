@@ -10,17 +10,20 @@ This is just a simple game
 -   [x] Shooting
 -   [ ] Attack (increase damage as wave increases)
 -   [ ] Health
--   [ ] Guns: pistol, shotgun, rifle
+-   [ ] Guns: pistol, shotgun, rifle, grenade
+-   [ ] Buffer Items: aid kid, more damage
+-   [ ] Nerf Items: slower speed, less damage
 -   [ ] UI: health, bullets left, reloading
 
 ### Enemies
 
 -   [x] Generation of enemies
--   [ ] Enemy movement
--   [ ] Enemy attack
--   [ ] Enemy death
--   [ ] Wave system
--   [ ] UI: health(change color based on value), enemies left for finishing the wave
+-   [x] Enemy movement
+-   [x] Enemy attack
+-   [x] Enemy death
+-   [x] UI: health(change color based on value), enemies left for finishing the wave
+-   [x] Wave system
+-   [ ] Add more variety of waves
 
 ### UI
 

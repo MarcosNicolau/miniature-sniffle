@@ -31,9 +31,10 @@ class Shooter inherits Enemy {
     const bulletSpeed
     const bulletImage
     const moveUntil
+    const bulletStartingYPos = position.y(player.y()) 
 
     override method attack() {
-        new Bullet(position = position.x(player.x()), damage = damage, speed = bulletSpeed, image = bulletImage).init()
+        new Bullet(position = bulletStartingYPos, damage = damage, speed = bulletSpeed, image = bulletImage).init()
         game.schedule(6000, {self.attack()})
     }
     
@@ -45,6 +46,7 @@ class Shooter inherits Enemy {
     }
 }
 
-class Sniper inherits Shooter(image = "sniper.png", speed = 10, bulletSpeed = 5, bulletImage = "sniper_bullet.png", moveUntil = 40) {}
-class Turret inherits Shooter(image = "turret.png", speed = 10, bulletSpeed = 5, bulletImage = "turrent_bullet.png", moveUntil = 80) {}
+class Sniper inherits Shooter(image = "sniper.png", speed = 4, bulletSpeed = 5, bulletImage = "sniper_bullet.png", moveUntil = 40) {}
+// They only shoot ahead, witouth pointing to the player
+class Turret inherits Shooter(image = "turret.png", speed = 4, bulletSpeed = 5, bulletImage = "turrent_bullet.png", moveUntil = 80, bulletStartingYPos = position.y()) {}
 

@@ -10,4 +10,12 @@ object utils {
         const y = 20.randomUpTo(game.height() - 20)
         return game.at(game.width() + 40, y)
     }
+
+    method getRandomNumberExcluding(min, max, numbersToExclude) {
+        const rndNum = min.randomUpTo(max) 
+        if(numbersToExclude.contains(rndNum)) 
+            return self.getRandomNumberExcluding(min, max, numbersToExclude)
+        else 
+            return rndNum
+    }
 }

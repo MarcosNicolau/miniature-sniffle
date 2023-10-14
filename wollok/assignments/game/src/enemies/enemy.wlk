@@ -1,7 +1,7 @@
 import ui.* 
 import _utils.* 
 import main.*
-import enemies.index.enemyManager
+import enemies.index.waveManager
 
 class Enemy {
     const property image
@@ -11,10 +11,10 @@ class Enemy {
 
 
     method init() {
+        console.println("obj")
         game.addVisual(self)
         game.addVisual(new HealthBar(parent = self, upFromPos =  20))
         gameManager.addRunFn({self.move()})
-
     }
 
     method move()
@@ -29,7 +29,6 @@ class Enemy {
     }
 
     method die() {
-        game.removeVisual(self)
-        enemyManager.destroyEnemy(self)
+        waveManager.destroyEnemy(self)
     }  
 }

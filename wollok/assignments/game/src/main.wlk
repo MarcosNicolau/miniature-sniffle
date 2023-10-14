@@ -1,5 +1,5 @@
 import player.*
-import enemies.index.enemyManager
+import enemies.index.waveManager
 
 object gameManager {
     const runner = []
@@ -11,7 +11,7 @@ object gameManager {
         game.boardGround("background.png")
         game.start()
         player.init()
-        enemyManager.init()
+        waveManager.init()
         game.onTick(60, "runner", {runner.forEach({fn => fn.apply()})})
     }
 
