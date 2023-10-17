@@ -12,7 +12,7 @@ Well, they are actually developing a vscode implementation which they haven't re
 
 ### Prerequisites
 
--   Nodejs installed: if you don't have it, follow the instructions [here](https://nodejs.org/en).
+-   [Nodejs installed](https://nodejs.org/en): if you don't have it, follow the instructions [here](https://nodejs.org/en).
 -   If you are on windows, you need to install some bash emulator. If you installed git, you probably already have git bash!
 
 ### Steps
@@ -21,7 +21,7 @@ Well, they are actually developing a vscode implementation which they haven't re
 2. **cd into the wollok folder**: `cd ./miniature-sniffle/wollok`
 3. **Run the project**:
     - **linux/macos**: if you are on linux you'd have to give it permission to execute first: `sudo chmod +x ./setup_code.sh && ./setup_code.sh`
-    - **windows**: if you are on windows you'd have to run git bash with administrator permissions and the run the script: `./setup_code.sh`
+    - **windows**: if you are on windows you'd have to run git bash with administrator permissions and the run: `chmod +x ./setup_code.sh && ./setup_code.sh`
 4. **Check that everything went fine**: type `wollok` in the terminal and you should see usage instructions.
 5. **Run your wollok apps**: `wollok repl ./<PATH_TO_WLK_FILE>`
 6. That's it! So yes that is pretty much everything there is to it, you thank me later ;)

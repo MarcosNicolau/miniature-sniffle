@@ -27,12 +27,12 @@ done
 WOLLOK_CLI_PATH=~/wollok-ts-cli
 mkdir $WOLLOK_CLI_PATH
 cd $WOLLOK_CLI_PATH
-git clone https://github.com/uqbar-project/wollok-ts-cli.git .
+git clone https://github.com/MarcosNicolau/wollok-ts-cli .
 npm install
 npm run build
 npm run pack
 mkdir -p ~/.local/bin
-mv ./dist/wollok-ts-cli-$TYPE ~/.local/bin/wollok
+mv ./dist/wollok-ts-cli-$TYPE-x64 ~/.local/bin/wollok
 cd ..
 rm -rf $WOLLOK_CLI_PATH
 
@@ -42,7 +42,6 @@ rm -rf $WOLLOK_CLI_PATH
 code --install-extension  uqbar.wollok-highlight --force
 
 # Language server
-
 WOLLOK_LSP_PATH=~/wollok-lsp
 mkdir $WOLLOK_LSP_PATH
 cd $WOLLOK_LSP_PATH
