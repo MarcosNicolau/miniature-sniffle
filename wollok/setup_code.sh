@@ -32,7 +32,7 @@ npm install
 npm run build
 npm run pack
 mkdir -p ~/.local/bin
-mv ./dist/wollok-ts-cli-$TYPE-x64 ~/.local/bin/wollok
+mv ./dist/wollok-ts-cli-$TYPE ~/.local/bin/wollok
 cd ..
 rm -rf $WOLLOK_CLI_PATH
 
