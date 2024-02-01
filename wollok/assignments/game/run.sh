@@ -1,1 +1,1 @@
-wollok run -a ../assets -p ./src/ app.application    
+/home/marcos/Documents/college/4_programming/wollok-ts-cli/dist/wollok-ts-cli-linux run app.application -p src -a ../assets

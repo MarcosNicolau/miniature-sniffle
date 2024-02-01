@@ -4,7 +4,7 @@ object utils {
     }
 
     method generateRandomId() {
-        return 0.randomUpTo(1000)
+        return 0.randomUpTo(1000).toString()
     }
 
 
@@ -24,4 +24,3 @@ object utils {
             return rndNum
     }
 }
-
